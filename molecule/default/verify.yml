@@ -1,0 +1,234 @@
+---
+- name: Verify
+  hosts: instance
+  vars:
+    unattended_periodic_enabled: 0
+    unattended_upgrade: 2
+    unattended_update_package_list: 2
+    unattended_download_upgradeable: 1
+    unattended_autoclean_interval: 1 
+    unattended_clean_interval: 1
+    unattended_verbose: 0
+    unattended_random_sleep: 1234
+    
+    unattended_package_blacklist: []
+    unattended_autofix_interrupted_dpkg: false
+    unattended_minimal_steps: false
+    unattended_install_on_shutdown: true
+    unattended_mail: "root"
+    unattended_mail_only_on_error: true
+    unattended_remove_unused_dependencies: true
+    unattended_remove_new_unused_dependencies: true
+    unattended_automatic_reboot: true
+    unattended_automatic_reboot_time: "02:00"
+    unattended_update_days: '{"Mon";"Tue";"Wed";"Thu";"Fri";"Sat";"Sun"}'
+    unattended_ignore_apps_require_restart: true
+    unattended_syslog_enable: true
+    unattended_syslog_facility: "daemon"
+    unattended_dpkg_options:
+     - "--force-confdef"
+     - "--force-confold"
+    unattended_dl_limit: 70
+  tasks:
+    - name: APT::Periodic::Enable
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        line: APT::Periodic::Enable "{{ unattended_periodic_enabled }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+
+    - name: APT::Periodic::Unattended-Upgrade
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        line: APT::Periodic::Unattended-Upgrade "{{ unattended_upgrade }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: APT::Periodic::Update-Package-Lists
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        line: APT::Periodic::Update-Package-Lists "{{ unattended_update_package_list }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: APT::Periodic::Download-Upgradeable-Packages
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        line: APT::Periodic::Download-Upgradeable-Packages "{{ unattended_download_upgradeable }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: APT::Periodic::AutocleanInterval
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        line: APT::Periodic::AutocleanInterval "{{ unattended_autoclean_interval }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: APT::Periodic::CleanInterval
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        line: APT::Periodic::CleanInterval "{{ unattended_clean_interval }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+
+    - name: APT::Periodic::Verbose
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        line: APT::Periodic::Verbose "{{ unattended_verbose }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+
+    - name: APT::Periodic::RandomSleep
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        line: APT::Periodic::RandomSleep "{{ unattended_random_sleep }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+
+
+
+      
+    - name: Unattended-Upgrade::Origins-Pattern
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::Origins-Pattern {
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::Package-Blacklist
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::Package-Blacklist {
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::AutoFixInterruptedDpkg
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::AutoFixInterruptedDpkg "false";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::MinimalSteps
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::MinimalSteps "{{ unattended_minimal_steps | lower }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::InstallOnShutdown
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::InstallOnShutdown "{{ unattended_install_on_shutdown }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::Mail
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::Mail "{{ unattended_mail }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::MailOnlyOnError
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::MailOnlyOnError "true";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::Remove-Unused-Dependencies
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::Remove-Unused-Dependencies "{{ unattended_remove_unused_dependencies }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::Remove-New-Unused-Dependencies
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::Remove-New-Unused-Dependencies "{{ unattended_remove_new_unused_dependencies }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::Automatic-Reboot
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::Automatic-Reboot "{{ unattended_automatic_reboot }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::Automatic-Reboot-Time
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::Automatic-Reboot-Time "{{ unattended_automatic_reboot_time }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::Update-Days
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::Update-Days {{ unattended_update_days }};
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::IgnoreAppsRequireRestart
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::IgnoreAppsRequireRestart "true";
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::SyslogEnable
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::SyslogEnable "true";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Unattended-Upgrade::SyslogFacility
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Unattended-Upgrade::SyslogFacility "{{ unattended_syslog_facility }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Dpkg::Options
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Dpkg::Options {
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+      
+    - name: Acquire::http::Dl-Limit
+      lineinfile: 
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        line: Acquire::http::Dl-Limit "{{ unattended_dl_limit }}";
+      check_mode: yes
+      register: verify
+      failed_when: verify.changed
+...

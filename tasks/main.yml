@@ -1,0 +1,37 @@
+---
+- name: add distribution-specific variables
+  include_vars: "{{ ansible_distribution }}.yml"
+
+- name: install unattended upgrades packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: "{{ unattended_cache_valid_time }}"
+  with_items:
+    - apt-listchanges
+    - unattended-upgrades
+    - update-notifier-common
+
+- name: create APT auto-upgrades configuration
+  template:
+    src: auto-upgrades.j2
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create unattended-upgrades configuration
+  template:
+    src: unattended-upgrades.j2
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    owner: root
+    group: root
+    mode: 0644
+
+- name: enable and start unattended-upgrades service
+  service:
+    name: unattended-upgrades
+    enabled: true
+    state: started
+...
