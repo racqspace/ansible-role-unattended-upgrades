@@ -1,6 +1,6 @@
-# Ansible Role: autoupdate
+# Ansible Role: unattended_upgrades
 
-![gplv3](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square) 
+![MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square) 
 ![Maintenance](https://img.shields.io/maintenance/yes/2022?style=flat-square)
 
 Install and setup [unattended-upgrades](https://launchpad.net/unattended-upgrades) for Ubuntu and Debian (since Wheezy), to periodically install security upgrades.
