@@ -11,7 +11,13 @@
   with_items:
     - apt-listchanges
     - unattended-upgrades
-    - update-notifier-common
+
+# Ignored, since newer distros don't need this package
+- name: install update-notifier-common
+  apt:
+    name: update-notifier-common
+    state: present
+  failed_when: false
 
 - name: create APT auto-upgrades configuration
   template:
