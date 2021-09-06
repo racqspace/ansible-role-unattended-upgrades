@@ -7,6 +7,8 @@ name: CI
       - 'develop'
     tags-ignore:
       - '**'
+  schedule:
+    - cron: '30 8 * * 3'
 
 jobs:
   linter:
@@ -121,19 +123,19 @@ jobs:
       #     $(echo ${{ github.repository }} | cut -d/ -f1)
       #     $(echo ${{ github.repository }} | cut -d/ -f2)
 
-  # notify:
-  #   name: Slack Notifications
-  #   runs-on: ubuntu-latest
-  #   if: ${{ failure() }}
-  #   needs:
-  #     - release
-  #   steps:
-  #     - name: Notify Slack channel on failure
-  #       uses: rtCamp/action-slack-notify@v2
-  #       env:
-  #         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-  #         SLACK_ICON: https://github.com/ckaserer/logos/raw/master/ansible.png
-  #         SLACK_USERNAME: ${{ github.repository }}
-  #         SLACK_COLOR: '#ff0033'
-  #         SLACK_FOOTER: ''
+  notify:
+    name: Slack Notifications
+    runs-on: ubuntu-latest
+    if: ${{ failure() }}
+    needs:
+      - release
+    steps:
+      - name: Notify Slack channel on failure
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_ICON: https://github.com/ckaserer/logos/raw/master/ansible.png
+          SLACK_USERNAME: ${{ github.repository }}
+          SLACK_COLOR: '#ff0033'
+          SLACK_FOOTER: ''
 ...
