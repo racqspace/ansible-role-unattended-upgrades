@@ -179,7 +179,6 @@ unattended_dpkg_options: []
 #   - "--force-confold"
 
 # Acquire::http::Dl-Limit
-#   Use apt bandwidth limit feature, this example limits the download speed to 70kb/sec
+#   Use apt bandwidth limit feature, this example limits the download speed to 70kB/sec
 #unattended_dl_limit: 70
-
 ...

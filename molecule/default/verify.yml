@@ -2,7 +2,7 @@
 - name: Verify
   hosts: instance
   vars:
-    unattended_periodic_enabled: 0
+    unattended_enabled: 0
     unattended_upgrade: 2
     unattended_update_package_list: 2
     unattended_download_upgradeable: 1
@@ -33,7 +33,7 @@
     - name: APT::Periodic::Enable
       lineinfile: 
         dest: /etc/apt/apt.conf.d/20auto-upgrades
-        line: APT::Periodic::Enable "{{ unattended_periodic_enabled }}";
+        line: APT::Periodic::Enable "{{ unattended_enabled }}";
       check_mode: yes
       register: verify
       failed_when: verify.changed

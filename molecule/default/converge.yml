@@ -2,7 +2,7 @@
 - name: Converge
   hosts: instance
   vars:
-    unattended_periodic_enabled: 0
+    unattended_enabled: 0
     unattended_upgrade: 2
     unattended_update_package_list: 2
     unattended_download_upgradeable: 1

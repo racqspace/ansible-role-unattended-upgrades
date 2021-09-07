@@ -1,7 +1,7 @@
 // {{ ansible_managed }}
 
 // Enable the update/upgrade script (0=disable)
-APT::Periodic::Enable "{{ unattended_periodic_enabled }}";
+APT::Periodic::Enable "{{ unattended_enabled }}";
 
 {% if unattended_upgrade is defined %}
 // Run the "unattended-upgrade" security upgrade script
