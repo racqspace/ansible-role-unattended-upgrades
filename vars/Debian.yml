@@ -1,4 +1,4 @@
 ---
-__unattended_origins_patterns:
+__unattended_upgrades_origins_patterns:
   - 'origin=Debian,codename=${distro_codename},label=Debian-Security'
 ...

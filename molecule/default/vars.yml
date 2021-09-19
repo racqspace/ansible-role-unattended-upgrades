@@ -1,0 +1,28 @@
+---
+unattended_upgrades_enabled: 0
+unattended_upgrades_upgrade: 2
+unattended_upgrades_update_package_list: 2
+unattended_upgrades_download_upgradeable: 1
+unattended_upgrades_autoclean_interval: 1
+unattended_upgrades_clean_interval: 1
+unattended_upgrades_verbose: 0
+unattended_upgrades_random_sleep: 1234
+unattended_upgrades_package_blacklist: []
+unattended_upgrades_autofix_interrupted_dpkg: false
+unattended_upgrades_minimal_steps: false
+unattended_upgrades_install_on_shutdown: true
+unattended_upgrades_mail: "root"
+unattended_upgrades_mail_only_on_error: true
+unattended_upgrades_remove_unused_dependencies: true
+unattended_upgrades_remove_new_unused_dependencies: true
+unattended_upgrades_automatic_reboot: true
+unattended_upgrades_automatic_reboot_time: "02:00"
+unattended_upgrades_update_days: '{"Mon";"Tue";"Wed";"Thu";"Fri";"Sat";"Sun"}'
+unattended_upgrades_ignore_apps_require_restart: true
+unattended_upgrades_syslog_enable: true
+unattended_upgrades_syslog_facility: "daemon"
+unattended_upgrades_dpkg_options:
+  - "--force-confdef"
+  - "--force-confold"
+unattended_upgrades_dl_limit: 70
+...

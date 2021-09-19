@@ -1,34 +1,11 @@
 ---
 - name: Converge
   hosts: instance
-  vars:
-    unattended_enabled: 0
-    unattended_upgrade: 2
-    unattended_update_package_list: 2
-    unattended_download_upgradeable: 1
-    unattended_autoclean_interval: 1 
-    unattended_clean_interval: 1
-    unattended_verbose: 0
-    unattended_random_sleep: 1234
-    
-    unattended_package_blacklist: []
-    unattended_autofix_interrupted_dpkg: false
-    unattended_minimal_steps: false
-    unattended_install_on_shutdown: true
-    unattended_mail: "root"
-    unattended_mail_only_on_error: true
-    unattended_remove_unused_dependencies: true
-    unattended_remove_new_unused_dependencies: true
-    unattended_automatic_reboot: true
-    unattended_automatic_reboot_time: "02:00"
-    unattended_update_days: '{"Mon";"Tue";"Wed";"Thu";"Fri";"Sat";"Sun"}'
-    unattended_ignore_apps_require_restart: true
-    unattended_syslog_enable: true
-    unattended_syslog_facility: "daemon"
-    unattended_dpkg_options:
-     - "--force-confdef"
-     - "--force-confold"
-    unattended_dl_limit: 70
-  roles:
-    - role: racqspace.unattended_upgrades
+  tasks:
+    - name: include test variables
+      ansible.builtin.include_vars:
+        file: "vars.yml"
+    - name: include test role
+      ansible.builtin.include_role:
+        name: "racqspace.unattended_upgrades_upgrades"
 ...

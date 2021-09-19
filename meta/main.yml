@@ -7,7 +7,7 @@ galaxy_info:
   namespace: racqspace
   description: Configure unattended-upgrades for Debian based systems.
   license: "MIT"
-  min_ansible_version: 2.4
+  min_ansible_version: 2.10
   platforms:
     - name: Ubuntu
       versions:

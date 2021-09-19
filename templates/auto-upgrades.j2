@@ -1,50 +1,50 @@
 // {{ ansible_managed }}
 
 // Enable the update/upgrade script (0=disable)
-APT::Periodic::Enable "{{ unattended_enabled }}";
+APT::Periodic::Enable "{{ unattended_upgrades_enabled }}";
 
-{% if unattended_upgrade is defined %}
+{% if unattended_upgrades_upgrade is defined %}
 // Run the "unattended-upgrade" security upgrade script
 // every n-days (0=disabled)
 // Requires the package "unattended-upgrades" and will write
 // a log in /var/log/unattended-upgrad
-APT::Periodic::Unattended-Upgrade "{{ unattended_upgrade }}";
+APT::Periodic::Unattended-Upgrade "{{ unattended_upgrades_upgrade }}";
 {% endif %}
 
-{% if unattended_update_package_list is defined %}
+{% if unattended_upgrades_update_package_list is defined %}
 // Do "apt-get update" automatically every n-days (0=disable)
-APT::Periodic::Update-Package-Lists "{{unattended_update_package_list}}";
+APT::Periodic::Update-Package-Lists "{{unattended_upgrades_update_package_list}}";
 {% endif %}
 
-{% if unattended_download_upgradeable is defined %}
+{% if unattended_upgrades_download_upgradeable is defined %}
 // Do "apt-get upgrade --download-only" every n-days (0=disable)
-APT::Periodic::Download-Upgradeable-Packages "{{unattended_download_upgradeable}}";
+APT::Periodic::Download-Upgradeable-Packages "{{unattended_upgrades_download_upgradeable}}";
 {% endif %}
 
-{% if unattended_autoclean_interval is defined %}
+{% if unattended_upgrades_autoclean_interval is defined %}
 // Do "apt-get autoclean" every n-days (0=disable)
-APT::Periodic::AutocleanInterval "{{unattended_autoclean_interval}}";
+APT::Periodic::AutocleanInterval "{{unattended_upgrades_autoclean_interval}}";
 {% endif %}
 
-{% if unattended_clean_interval is defined %}
+{% if unattended_upgrades_clean_interval is defined %}
 // - Do "apt-get clean" every n-days (0=disable)
-APT::Periodic::CleanInterval "{{unattended_clean_interval}}";
+APT::Periodic::CleanInterval "{{unattended_upgrades_clean_interval}}";
 {% endif %}
 
-{% if unattended_verbose is defined %}
+{% if unattended_upgrades_verbose is defined %}
 // - Send report mail to root
 //     0:  no report             (or null string)
 //     1:  progress report       (actually any string)
 //     2:  + command outputs     (remove -qq, remove 2>/dev/null, add -d)
 //     3:  + trace on
-APT::Periodic::Verbose "{{unattended_verbose}}";
+APT::Periodic::Verbose "{{unattended_upgrades_verbose}}";
 {% endif %}
 
-{% if unattended_random_sleep is defined %}
+{% if unattended_upgrades_random_sleep is defined %}
 // When the apt job starts, it will sleep for a random period between 0
 // and APT::Periodic::RandomSleep seconds
 // The default value is "1800" so that the script will stall for up to 30
 // minutes (1800 seconds) so that the mirror servers are not crushed by
 // everyone running their updates all at the same time
-APT::Periodic::RandomSleep "{{unattended_random_sleep}}";
+APT::Periodic::RandomSleep "{{unattended_upgrades_random_sleep}}";
 {% endif %}

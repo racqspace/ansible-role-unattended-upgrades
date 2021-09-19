@@ -1,26 +1,29 @@
 ---
 - name: add distribution-specific variables
-  include_vars: "{{ ansible_distribution }}.yml"
+  ansible.builtin.include_vars:
+    file: "{{ ansible_distribution }}.yml"
 
 - name: install unattended upgrades packages
-  apt:
-    name: "{{ item }}"
+  ansible.builtin.apt:
+    name: "{{ unattended_upgrades_packages }}"
     state: present
-    update_cache: yes
-    cache_valid_time: "{{ unattended_cache_valid_time }}"
+    update_cache: true
+    cache_valid_time: "{{ unattended_upgrades_cache_valid_time }}"
+  loop_control:
+    loop_var: unattended_upgrades_packages
   with_items:
     - apt-listchanges
     - unattended-upgrades
 
 # Ignored, since newer distros don't need this package
 - name: install update-notifier-common
-  apt:
+  ansible.builtin.apt:
     name: update-notifier-common
     state: present
   failed_when: false
 
 - name: create APT auto-upgrades configuration
-  template:
+  ansible.builtin.template:
     src: auto-upgrades.j2
     dest: /etc/apt/apt.conf.d/20auto-upgrades
     owner: root
@@ -28,7 +31,7 @@
     mode: 0644
 
 - name: create unattended-upgrades configuration
-  template:
+  ansible.builtin.template:
     src: unattended-upgrades.j2
     dest: /etc/apt/apt.conf.d/50unattended-upgrades
     owner: root
@@ -36,7 +39,7 @@
     mode: 0644
 
 - name: enable and start unattended-upgrades service
-  service:
+  ansible.builtin.service:
     name: unattended-upgrades
     enabled: true
     state: started
