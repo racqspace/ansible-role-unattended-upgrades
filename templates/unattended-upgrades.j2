@@ -61,7 +61,7 @@ Unattended-Upgrade::MinimalSteps "{{ unattended_upgrades_minimal_steps | lower }
 // Install all unattended-upgrades when the machine is shuting down
 // instead of doing it in the background while the machine is running
 // This will (obviously) make shutdown slower
-Unattended-Upgrade::InstallOnShutdown "{{ unattended_upgrades_install_on_shutdown }}";
+Unattended-Upgrade::InstallOnShutdown "{{ unattended_upgrades_install_on_shutdown | lower }}";
 {% endif %}
 
 {% if unattended_upgrades_mail %}
@@ -81,18 +81,18 @@ Unattended-Upgrade::MailOnlyOnError "true";
 {% if unattended_upgrades_remove_unused_dependencies %}
 // Do automatic removal of new unused dependencies after the upgrade
 // (equivalent to apt-get autoremove)
-Unattended-Upgrade::Remove-Unused-Dependencies "{{ unattended_upgrades_remove_unused_dependencies }}";
+Unattended-Upgrade::Remove-Unused-Dependencies "{{ unattended_upgrades_remove_unused_dependencies | lower }}";
 {% endif %}
 
 {% if unattended_upgrades_remove_new_unused_dependencies %}
 // Do automatic removal of new unused dependencies after the upgrade
-Unattended-Upgrade::Remove-New-Unused-Dependencies "{{ unattended_upgrades_remove_new_unused_dependencies }}";
+Unattended-Upgrade::Remove-New-Unused-Dependencies "{{ unattended_upgrades_remove_new_unused_dependencies | lower }}";
 {% endif %}
 
 {% if unattended_upgrades_automatic_reboot %}
 // Automatically reboot *WITHOUT CONFIRMATION* if
 //  the file /var/run/reboot-required is found after the upgrade
-Unattended-Upgrade::Automatic-Reboot "{{ unattended_upgrades_automatic_reboot }}";
+Unattended-Upgrade::Automatic-Reboot "{{ unattended_upgrades_automatic_reboot | lower }}";
 {% endif %}
 
 {% if unattended_upgrades_automatic_reboot_time %}
