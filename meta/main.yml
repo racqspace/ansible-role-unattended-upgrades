@@ -5,13 +5,17 @@ galaxy_info:
   role_name: unattended_upgrades
   author: ckaserer
   namespace: racqspace
-  description: Configure Ubuntu unattended-upgrades.
+  description: Configure unattended-upgrades for Debian based systems.
   license: "MIT"
   min_ansible_version: 2.4
   platforms:
     - name: Ubuntu
       versions:
         - focal
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
   galaxy_tags:
     - apt
     - autoupdate
