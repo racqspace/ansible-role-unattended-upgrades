@@ -1,5 +1,2 @@
 *.retry
-*/__pycache__
-*.pyc
 .env
-.cache
