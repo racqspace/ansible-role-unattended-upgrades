@@ -30,7 +30,7 @@ repos:
   - repo: local
     hooks:
       - id: molecule
-        name: Run molecule
+        name: Run molecule with Ubuntu 20.04
         entry: molecule test --parallel
         language: python
         files: \.(yaml|yml|j2)$
