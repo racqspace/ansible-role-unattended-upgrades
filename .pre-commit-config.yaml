@@ -36,6 +36,6 @@
       name: molecule
       entry: molecule test --parallel
       language: system
-      files: \.(yaml|yml)$
+      files: \.(yaml|yml|j2)$
       pass_filenames: false
 ...
