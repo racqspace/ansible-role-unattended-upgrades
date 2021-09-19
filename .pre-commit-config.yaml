@@ -28,4 +28,14 @@
   hooks:
     - id: ansible-lint
       files: \.(yaml|yml)$
+
+# keep at bottom as these are slower
+- repo: local
+  hooks:
+    - id: molecule
+      name: molecule
+      entry: molecule test --parallel
+      language: system
+      files: \.(yaml|yml)$
+      pass_filenames: false
 ...
