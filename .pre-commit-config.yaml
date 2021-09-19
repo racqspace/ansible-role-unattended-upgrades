@@ -34,6 +34,12 @@ repos:
         entry: molecule test --parallel
         language: python
         files: \.(yaml|yml|j2)$
+        exclude: |
+            (?x)^(
+                .github/|
+                .pre-commit-config.yaml|
+                .pre-commit-hooks.yaml
+            )$
         pass_filenames: false
         additional_dependencies:
           - ansible
