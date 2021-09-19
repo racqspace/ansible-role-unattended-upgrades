@@ -3,9 +3,10 @@
 # See usage instructions at http://pre-commit.com
 
 - id: ansible-lint
-  name: Ansible-lint
+  name: Check ansible-lint
   description: This hook runs ansible-lint.
   entry: ansible-lint --force-color
+  files: \.(yaml|yml)$
   language: python
   # do not pass files to ansible-lint, see:
   # https://github.com/ansible-community/ansible-lint/issues/611
@@ -17,4 +18,10 @@
     # replace 'community' extra with 'core' or just mention the exact
     # version of Ansible you want to install as a dependency.
     - .[community,yamllint]
+
+- id: yamllint
+  entry: yamllint --strict
+  files: \.(yaml|yml)$
+  language: python
+  types: [file, yaml]
 ...
