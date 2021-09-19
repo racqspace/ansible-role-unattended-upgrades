@@ -7,6 +7,12 @@
   description: This hook runs ansible-lint.
   entry: ansible-lint --force-color
   files: \.(yaml|yml)$
+  exclude: |
+      (?x)^(
+          .github/|
+          .pre-commit-config.yaml|
+          .pre-commit-hooks.yaml
+      )$
   language: python
   # do not pass files to ansible-lint, see:
   # https://github.com/ansible-community/ansible-lint/issues/611
