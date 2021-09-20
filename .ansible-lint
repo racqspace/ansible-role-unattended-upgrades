@@ -4,6 +4,8 @@
 exclude_paths:
   - .cache/  # implicit unless exclude_paths is defined in config
   - .github/
+  - .pre-commit-config.yaml
+  - .pre-commit-hooks.yaml
 
 # parseable: true
 # verbosity: 1
