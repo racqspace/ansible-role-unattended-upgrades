@@ -5,6 +5,7 @@ name: Develop
   push:
     branches:
       - develop
+  workflow_dispatch:
 
 jobs:
   ansible-linter:
