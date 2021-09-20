@@ -3,6 +3,7 @@
 
 exclude_paths:
   - .cache/  # implicit unless exclude_paths is defined in config
+  - .env/
   - .github/
   - .pre-commit-config.yaml
   - .pre-commit-hooks.yaml
