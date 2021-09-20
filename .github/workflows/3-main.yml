@@ -140,6 +140,7 @@ jobs:
         run: pip3 install ansible-base
 
       - name: Trigger a new import on Galaxy
+        # shellcheck disable=SC2046
         run: >-
           ansible-galaxy role import
           --token ${{ secrets.GALAXY_API_KEY }}
