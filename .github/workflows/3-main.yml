@@ -140,13 +140,12 @@ jobs:
         run: pip3 install ansible-base
 
       - name: Trigger a new import on Galaxy
-        # shellcheck disable=SC2046
         run: >-
           ansible-galaxy role import
-          --token ${{ secrets.GALAXY_API_KEY }}
+          --token "${{ secrets.GALAXY_API_KEY }}"
           --branch main
-          $(echo ${{ github.repository }} | cut -d/ -f1)
-          $(echo ${{ github.repository }} | cut -d/ -f2)
+          "$(echo ${{ github.repository }} | cut -d/ -f1)"
+          "$(echo ${{ github.repository }} | cut -d/ -f2)"
 
   notify:
     name: Slack Notifications
