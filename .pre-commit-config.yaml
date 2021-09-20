@@ -3,32 +3,118 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
     hooks:
+      # Prevent giant files from being committed.
+      # Specify what is "too large" with args: ['--maxkb=123'] (default=500kB).
+      # Limits checked files to those indicated as staged for addition by git.
+      # If git-lfs is installed, lfs files will be skipped
+      # (requires git-lfs>=2.2.1)
+      # --enforce-all - Check all listed files not just those staged for
+      #                 addition.
       - id: check-added-large-files
+      # Check for files with names that would conflict on a case-insensitive
+      # filesystem like MacOS HFS+ or Windows FAT.
       - id: check-case-conflict
+      # Attempts to load all json files to verify syntax.
+      - id: check-json
+      # Check for files that contain merge conflict strings.
       - id: check-merge-conflict
+      # Checks that scripts with shebangs are executable.
       - id: check-shebang-scripts-are-executable
+      # Checks for symlinks which do not point to anything.
       - id: check-symlinks
+      # Attempts to load all xml files to verify syntax.
+      - id: check-xml
+      # Attempts to load all yaml files to verify syntax.
+      # --allow-multiple-documents - allow yaml files which use the
+      #                              multi-document syntax
+      # --unsafe - Instead of loading the files, simply parse them for syntax.
+      #            A syntax-only check enables extensions and unsafe constructs
+      #            which would otherwise be forbidden.
+      #            Using this option removes all guarantees of portability to
+      #            other yaml implementations.
+      #            Implies --allow-multiple-documents.
       - id: check-yaml
+      # Detects symlinks which are changed to regular files with a content of
+      # a path which that symlink was pointing to. This usually happens on
+      # Windows when a user clones a repository that has symlinks but they do
+      # not have the permission to create symlinks.
       - id: destroyed-symlinks
+      # Checks for the existence of private keys.
       - id: detect-private-key
+      # Makes sure files end in a newline and only a newline.
       - id: end-of-file-fixer
+      # Prevent addition of new git submodules.
+      - id: forbid-new-submodules
+      # Replaces or checks mixed line ending.
+      # --fix={auto,crlf,lf,no}
+      #   auto - Replaces automatically the most frequent line ending.
+      #          This is the default argument.
+      #   crlf, lf - Forces to replace line ending by respectively CRLF and LF.
+      #              This option isn't compatible with git setup check-in LF
+      #              check-out CRLF as git smudge this later than the hook
+      #              is invoked.
+      #   no - Checks if there is any mixed line ending without modifying any
+      #        file.
       - id: mixed-line-ending
+      # Protect specific branches from direct checkins.
+      # Use args: [--branch, staging, --branch, master] to set the branch. Both
+      # master and main are protected by default if no branch argument is set.
+      # -b / --branch may be specified multiple times to protect multiple
+      #        branches.
+      # -p / --pattern can be used to protect branches that match a supplied
+      #        regex (e.g. --pattern, release/.*). May be specified multiple
+      #        times.
+      # Note that no-commit-to-branch is configured by default to always_run.
+      # As a result, it will ignore any setting of files, exclude, types or
+      # exclude_types. Set always_run: false to allow this hook to be skipped
+      # according to these file filters. Caveat: In this configuration, empty
+      # commits (git commit --allow-empty) would always be allowed by this hook.
+      - id: no-commit-to-branch
+      # Checks that all your JSON files are pretty. "Pretty" here means that
+      # keys are sorted and indented.
+      # You can configure this with the following commandline options:
+      # --autofix - automatically format json files
+      # --indent ... - Control the indentation (either a number for a number of
+      #                spaces or a string of whitespace). Defaults to 2 spaces.
+      # --no-ensure-ascii preserve unicode characters instead of converting to
+      #                escape sequences
+      # --no-sort-keys - when autofixing, retain the original key ordering
+      #                  (instead of sorting the keys)
+      # --top-keys comma,separated,keys - Keys to keep at the top of mappings.
+      - id: pretty-format-json
+      # Sorts entries in requirements.txt and removes incorrect entry for
+      # pkg-resources==0.0.0
       - id: requirements-txt-fixer
+      # Trims trailing whitespace.
+      # To preserve Markdown hard linebreaks use
+      # args: [--markdown-linebreak-ext=md]
+      # (or other extensions used by your markdownfiles). If for some reason
+      # you want to treat all files as markdown, use --markdown-linebreak-ext=*.
+      # By default, this hook trims all whitespace from the ends of lines. To
+      # specify a custom set of characters to trim instead, use
+      # args: [--chars,"<chars to trim>"].
       - id: trailing-whitespace
 
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.26.2
     hooks:
+      # yamllint does not only check for syntax validity, but for weirdnesses
+      # like key repetition and cosmetic problems such as lines length,
+      # trailing spaces, indentation, etc.
       - id: yamllint
 
   - repo: https://github.com/ansible-community/ansible-lint.git
     rev: v5.1.3
     hooks:
+      # ansible-lint checks playbooks for practices and behaviour that could
+      # potentially be improved. As a community backed project ansible-lint
+      # supports only the last two major versions of Ansible.
       - id: ansible-lint
 
   # keep at bottom as these are slower
   - repo: local
     hooks:
+      # run molecule tests before commiting to the branch
       - id: molecule
         name: Run molecule with Ubuntu 20.04
         entry: molecule test --parallel
