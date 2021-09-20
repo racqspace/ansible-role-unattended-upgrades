@@ -20,7 +20,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install ansible-lint Dependencies
-        run: pip3 install ansible ansible-base ansible-lint[community,yamllint]
+        run: pip3 install ansible ansible-base ansible-lint
 
       - name: Lint Code Base with ansible-lint
         run: ansible-lint

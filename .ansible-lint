@@ -44,7 +44,7 @@ enable_list:
   - fqcn-builtins    # opt-in
   - no-log-password  # opt-in
   - no-same-owner    # opt-in
-  - yaml
+  # - yaml
 # Report only a subset of tags and fully ignore any others
 # tags:
 #   - var-spacing
