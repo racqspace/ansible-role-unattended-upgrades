@@ -4,7 +4,7 @@ dependencies: []
 galaxy_info:
   role_name: unattended_upgrades
   author: ckaserer
-  namespace: racqspace
+  namespace: gepaplexx
   description: Configure unattended-upgrades for Debian based systems.
   license: "MIT"
   min_ansible_version: "2.10"

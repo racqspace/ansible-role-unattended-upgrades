@@ -2,7 +2,7 @@
 - name: Converge
   hosts: instance*
   roles:
-    - role: racqspace.unattended_upgrades
+    - role: gepaplexx.unattended_upgrades
       vars:
         unattended_upgrades_enabled: 0
         unattended_upgrades_upgrade: 2

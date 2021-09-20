@@ -4,8 +4,8 @@
 
 Before you begin:
 - Have you read the [code of conduct](CODE_OF_CONDUCT.md)?
-- Check out the [existing issues](https://github.com/racqspace/ansible-role-unattended-upgrades/issues) & see if we [accept contributions](#types-of-contributions-memo) for your type of issue.
-- Before you make your changes, check to see if an [issue exists](https://github.com/racqspace/ansible-role-unattended-upgrades/issues/) already for the change you want to make.
+- Check out the [existing issues](https://github.com/gepaplexx/ansible-role-unattended-upgrades/issues) & see if we [accept contributions](#types-of-contributions-memo) for your type of issue.
+- Before you make your changes, check to see if an [issue exists](https://github.com/gepaplexx/ansible-role-unattended-upgrades/issues/) already for the change you want to make.
 
 ### Don't see your issue? Open one
 
@@ -34,18 +34,18 @@ Make your changes to the file(s) you'd like to update. Here are some tips and tr
 When you're done making changes and you'd like to propose them for review open a PR (pull request).
 
 ### Submit your PR & get it reviewed
-- Once you submit your PR, others from the racqspace community will review it with you. The first thing you're going to want to do is a [self review](#self-review).
+- Once you submit your PR, others from the gepaplexx community will review it with you. The first thing you're going to want to do is a [self review](#self-review).
 - After that, we may have questions, check back on your PR to keep up with the conversation.
 - Did you have an issue, like a merge conflict? Check out our [git tutorial](https://lab.github.com/githubtraining/managing-merge-conflicts) on how to resolve merge conflicts and other issues.
 
 ### Your PR is merged!
-Congratulations! The racqspace community thanks you. :sparkles:
+Congratulations! The gepaplexx community thanks you. :sparkles:
 
-Once your PR is merged, you will be proudly listed as a contributor in the [contributor chart](https://github.com/racqspace/ansible-role-unattended-upgrades/graphs/contributors).
+Once your PR is merged, you will be proudly listed as a contributor in the [contributor chart](https://github.com/gepaplexx/ansible-role-unattended-upgrades/graphs/contributors).
 
 ### Keep contributing as you use the ansible role
 
-Now that you're a part of the racqspace community, you can keep participating in many ways.
+Now that you're a part of the gepaplexx community, you can keep participating in many ways.
 
 **Learn more about contributing:**
 
@@ -60,12 +60,12 @@ Now that you're a part of the racqspace community, you can keep participating in
   - [Suggested changes](#suggested-changes)
 
 ## Types of contributions :memo:
-You can contribute in several ways. This repo is a place to discuss and collaborate on the ansible role racqspace.unattended_upgrades! Our small, but mighty :muscle: racqspace team is maintaining this repo. To preserve our bandwidth, off topic conversations will be closed.
+You can contribute in several ways. This repo is a place to discuss and collaborate on the ansible role gepaplexx.unattended_upgrades! Our small, but mighty :muscle: gepaplexx team is maintaining this repo. To preserve our bandwidth, off topic conversations will be closed.
 
 ### :mega: Discussions
 Discussions are where we have conversations.
 
-If you'd like help troubleshooting a PR you're working on, have a great new idea, or want to share something amazing you've learned in our docs, join us in [discussions](https://github.com/racqspace/ansible-role-unattended-upgrades/discussions).
+If you'd like help troubleshooting a PR you're working on, have a great new idea, or want to share something amazing you've learned in our docs, join us in [discussions](https://github.com/gepaplexx/ansible-role-unattended-upgrades/discussions).
 
 ### :beetle: Issues
 [Issues](https://docs.github.com/en/github/managing-your-work-on-github/about-issues) are used to track tasks that contributors can help with. If an issue has a triage label, we haven't reviewed it yet and you shouldn't begin work on it.
