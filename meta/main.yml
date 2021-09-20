@@ -20,6 +20,7 @@ galaxy_info:
     - apt
     - autoupdate
     - maintenance
+    - security
     - system
     - ubuntu
     - unattended
