@@ -70,6 +70,7 @@ repos:
       # according to these file filters. Caveat: In this configuration, empty
       # commits (git commit --allow-empty) would always be allowed by this hook.
       - id: no-commit-to-branch
+        always_run: false
       # Checks that all your JSON files are pretty. "Pretty" here means that
       # keys are sorted and indented.
       # You can configure this with the following commandline options:
