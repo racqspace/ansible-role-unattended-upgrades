@@ -1,0 +1,4 @@
+---
+# Cache update time for apt module
+unattended_upgrades_cache_valid_time: 3600
+...
