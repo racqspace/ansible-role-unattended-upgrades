@@ -101,8 +101,8 @@ jobs:
           ANSIBLE_FORCE_COLOR: 1
           MOLECULE_DISTRO: ${{ matrix.distro }}
 
-  merge:
-    name: Merge to main
+  pull-request:
+    name: Pull Request
     runs-on: ubuntu-latest
     needs:
       - ansible-linter
@@ -118,14 +118,14 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           branch: main
-          token: PAT
+          token: ${{ secrets.PAT }}
 
   notify:
     name: Slack Notifications
     runs-on: ubuntu-latest
     if: ${{ failure() }}
     needs:
-      - merge
+      - pull-request
     steps:
       - name: Notify Slack channel on failure
         uses: rtCamp/action-slack-notify@v2
