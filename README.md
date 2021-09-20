@@ -1,7 +1,13 @@
-# Ansible Role: unattended_upgrades_upgrades
+# Ansible Role: unattended_upgrades
 
 ![MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/racqspace/ansible-role-unattended-upgrades/Main?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/racqspace/ansible-role-unattended-upgrades?style=flat-square)
+![GitHub Release Date](https://img.shields.io/github/release-date/racqspace/ansible-role-unattended-upgrades?style=flat-square)
 ![Maintenance](https://img.shields.io/maintenance/yes/2022?style=flat-square)
+
+![Ansible Role](https://img.shields.io/ansible/role/56296?style=flat-square)
+![Ansible Quality Score](https://img.shields.io/ansible/quality/56296?style=flat-square)
 
 Install and setup [unattended-upgrades](https://launchpad.net/unattended-upgrades) for Ubuntu and Debian (since Wheezy), to periodically install security upgrades.
 
@@ -25,8 +31,32 @@ On some hosts you may find that the unattended-upgrade's cronfile `/etc/cron.dai
 
 ## Role Variables
 
+### main
+
 * `unattended_upgrades_cache_valid_time`: Update the apt cache if its older than the given time in seconds; passed to the [apt module](https://docs.ansible.com/ansible/latest/apt_module.html) during package installation.
     * Default: `3600`
+
+### auto-upgrades
+
+* `unattended_upgrades_enabled`: Enable the update/upgrade script (0=disable)
+    * Default: `1`
+* `unattended_upgrades_upgrade`: Run the "unattended-upgrade" security upgrade script every n-days (0=disabled)
+    * Default: `1`
+* `unattended_upgrades_update_package_list`: Do "apt-get update" automatically every n-days (0=disable)
+    * Default: `1`
+* `unattended_upgrades_download_upgradeable`: Do "apt-get upgrade --download-only" every n-days (0=disable)
+    * Default: `0`
+* `unattended_upgrades_autoclean_interval`: Do "apt-get autoclean" every n-days (0=disable)
+    * Default: `7`
+* `unattended_upgrades_clean_interval`: Do "apt-get clean" every n-days (0=disable)
+    * Default: `0`
+* `unattended_upgrades_random_sleep`: Define maximum for a random interval in seconds after which the apt job starts (only for systems without systemd)
+    * Default: `1800` (30 minutes)
+* `unattended_upgrades_dl_limit`: Limit the download speed in kB/sec using apt bandwidth limit feature.
+    * Default: disabled
+
+### unattended-upgrades
+
 * `unattended_upgrades_origins_patterns`: array of origins patterns to determine whether the package can be automatically installed, for more details see [Origins Patterns](#origins-patterns) below.
     * Default for Debian: `['origin=Debian,codename=${distro_codename},label=Debian-Security']`
     * Default for Ubuntu: `['origin=Ubuntu,archive=${distro_codename}-security,label=Ubuntu']`
@@ -65,24 +95,8 @@ On some hosts you may find that the unattended-upgrade's cronfile `/etc/cron.dai
       * `2`: + command outputs
       * `3`: + trace on
     * Default: `0` (no report)
-* `unattended_upgrades_enabled`: Enable the update/upgrade script (0=disable)
-    * Default: `1`
-* `unattended_upgrades_upgrade`: Run the "unattended-upgrade" security upgrade script every n-days (0=disabled)
-    * Default: `1`
-* `unattended_upgrades_update_package_list`: Do "apt-get update" automatically every n-days (0=disable)
-    * Default: `1`
-* `unattended_upgrades_download_upgradeable`: Do "apt-get upgrade --download-only" every n-days (0=disable)
-    * Default: `0`
-* `unattended_upgrades_autoclean_interval`: Do "apt-get autoclean" every n-days (0=disable)
-    * Default: `7`
-* `unattended_upgrades_clean_interval`: Do "apt-get clean" every n-days (0=disable)
-    * Default: `0`
-* `unattended_upgrades_random_sleep`: Define maximum for a random interval in seconds after which the apt job starts (only for systems without systemd)
-    * Default: `1800` (30 minutes)
 * `unattended_upgrades_dpkg_options`: Array of dpkg command-line options used during unattended-upgrades runs, e.g. `["--force-confdef"]`, `["--force-confold"]`
     * Default: `[]`
-* `unattended_upgrades_dl_limit`: Limit the download speed in kB/sec using apt bandwidth limit feature.
-    * Default: disabled
 
 ## Origins Patterns
 
@@ -113,10 +127,11 @@ Example for Ubuntu, with custom [origins patterns](#patterns-examples), blacklis
 ```yaml
 - hosts: all
   roles:
-  - role: racqspace.unattended_upgrades_upgrades
-    unattended_upgrades_origins_patterns:
-    - 'origin=Ubuntu,archive=${distro_codename}-security'
-    - 'o=Ubuntu,a=${distro_codename}-updates'
+  - role: racqspace.unattended_upgrades
+    vars:
+      unattended_upgrades_origins_patterns:
+        - 'origin=Ubuntu,archive=${distro_codename}-security'
+        - 'o=Ubuntu,a=${distro_codename}-updates'
     unattended_upgrades_package_blacklist: [cowsay, vim]
     unattended_upgrades_mail: 'root@example.com'
 ```
@@ -130,7 +145,7 @@ If you manage multiple distribution with the same playbook, you may want to skip
 ```yaml
 - hosts: all
   roles:
-     - role: racqspace.unattended_upgrades_upgrades
+     - role: racqspace.unattended_upgrades
        when: ansible_facts['os_family'] == 'Debian'
 ```
 
