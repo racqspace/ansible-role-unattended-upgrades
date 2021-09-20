@@ -56,21 +56,6 @@ repos:
       #   no - Checks if there is any mixed line ending without modifying any
       #        file.
       - id: mixed-line-ending
-      # Protect specific branches from direct checkins.
-      # Use args: [--branch, staging, --branch, master] to set the branch. Both
-      # master and main are protected by default if no branch argument is set.
-      # -b / --branch may be specified multiple times to protect multiple
-      #        branches.
-      # -p / --pattern can be used to protect branches that match a supplied
-      #        regex (e.g. --pattern, release/.*). May be specified multiple
-      #        times.
-      # Note that no-commit-to-branch is configured by default to always_run.
-      # As a result, it will ignore any setting of files, exclude, types or
-      # exclude_types. Set always_run: false to allow this hook to be skipped
-      # according to these file filters. Caveat: In this configuration, empty
-      # commits (git commit --allow-empty) would always be allowed by this hook.
-      - id: no-commit-to-branch
-        always_run: false
       # Checks that all your JSON files are pretty. "Pretty" here means that
       # keys are sorted and indented.
       # You can configure this with the following commandline options:
