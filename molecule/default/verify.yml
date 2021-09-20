@@ -1,5 +1,4 @@
 ---
-# yamllint disable rule:line-length
 - name: Verify
   hosts: instance*
   tasks:
@@ -158,7 +157,7 @@
     - name: Unattended-Upgrade::Update-Days
       ansible.builtin.lineinfile:
         dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::Update-Days {"Mon";"Tue";"Wed";"Thu";"Fri";"Sat";"Sun"};
+        line: Unattended-Upgrade::Update-Days {"Mon";"Tue";"Wed";"Thu";"Fri";"Sat";"Sun"};   # yamllint disable-line rule:line-length
       check_mode: true
       register: unattended_upgrades_verify
       failed_when: unattended_upgrades_verify.changed
