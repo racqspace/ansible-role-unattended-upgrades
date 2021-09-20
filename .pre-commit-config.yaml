@@ -35,9 +35,13 @@ repos:
         language: python
         files: \.(yaml|yml|j2)$
         exclude: |
-            (?x)(
-                ^.github/|
-                ^.pre-commit-*|
+            (?x)^(
+                .github/workflows/1-develop.yml|
+                .github/workflows/2-pull-request.yml|
+                .github/workflows/3-main.yml|
+                .github/FUNDING.yml|
+                .pre-commit-config.yaml|
+                .pre-commit-hooks.yaml
             )$
         pass_filenames: false
         additional_dependencies:
