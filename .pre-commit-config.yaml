@@ -35,10 +35,9 @@ repos:
         language: python
         files: \.(yaml|yml|j2)$
         exclude: |
-            (?x)^(
-                .github/|
-                .pre-commit-config.yaml|
-                .pre-commit-hooks.yaml
+            (?x)(
+                ^.github/|
+                ^.pre-commit-*|
             )$
         pass_filenames: false
         additional_dependencies:
