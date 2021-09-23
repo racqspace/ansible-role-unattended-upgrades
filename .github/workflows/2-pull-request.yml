@@ -93,7 +93,7 @@ jobs:
         run: pip3 install -r requirements.txt
 
       - name: Run Molecule Tests
-        run: molecule test
+        run: molecule test --all
         env:
           PY_COLORS: 1
           ANSIBLE_FORCE_COLOR: 1

@@ -5,7 +5,7 @@
     - name: APT::Periodic::Enable
       ansible.builtin.lineinfile:
         dest: /etc/apt/apt.conf.d/20auto-upgrades
-        line: APT::Periodic::Enable "0";
+        line: APT::Periodic::Enable "1";
       check_mode: true
       register: unattended_upgrades_verify
       failed_when: unattended_upgrades_verify.changed
@@ -13,7 +13,7 @@
     - name: APT::Periodic::Unattended-Upgrade
       ansible.builtin.lineinfile:
         dest: /etc/apt/apt.conf.d/20auto-upgrades
-        line: APT::Periodic::Unattended-Upgrade "2";
+        line: APT::Periodic::Unattended-Upgrade "1";
       check_mode: true
       register: unattended_upgrades_verify
       failed_when: unattended_upgrades_verify.changed
@@ -21,15 +21,7 @@
     - name: APT::Periodic::Update-Package-Lists
       ansible.builtin.lineinfile:
         dest: /etc/apt/apt.conf.d/20auto-upgrades
-        line: APT::Periodic::Update-Package-Lists "2";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: APT::Periodic::Download-Upgradeable-Packages
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/20auto-upgrades
-        line: APT::Periodic::Download-Upgradeable-Packages "1";
+        line: APT::Periodic::Update-Package-Lists "1";
       check_mode: true
       register: unattended_upgrades_verify
       failed_when: unattended_upgrades_verify.changed
@@ -37,31 +29,7 @@
     - name: APT::Periodic::AutocleanInterval
       ansible.builtin.lineinfile:
         dest: /etc/apt/apt.conf.d/20auto-upgrades
-        line: APT::Periodic::AutocleanInterval "1";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: APT::Periodic::CleanInterval
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/20auto-upgrades
-        line: APT::Periodic::CleanInterval "1";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: APT::Periodic::Verbose
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/20auto-upgrades
-        line: APT::Periodic::Verbose "0";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: APT::Periodic::RandomSleep
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/20auto-upgrades
-        line: APT::Periodic::RandomSleep "1234";
+        line: APT::Periodic::AutocleanInterval "7";
       check_mode: true
       register: unattended_upgrades_verify
       failed_when: unattended_upgrades_verify.changed
@@ -78,125 +46,6 @@
       ansible.builtin.lineinfile:
         dest: /etc/apt/apt.conf.d/50unattended-upgrades
         line: Unattended-Upgrade::Package-Blacklist {
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::AutoFixInterruptedDpkg
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::AutoFixInterruptedDpkg "false";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::MinimalSteps
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::MinimalSteps "false";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::InstallOnShutdown
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::InstallOnShutdown "true";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::Mail
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::Mail "root";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::MailOnlyOnError
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::MailOnlyOnError "true";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::Remove-Unused-Dependencies
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::Remove-Unused-Dependencies "true";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::Remove-New-Unused-Dependencies
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::Remove-New-Unused-Dependencies "true";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::Automatic-Reboot
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::Automatic-Reboot "true";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::Automatic-Reboot-Time
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::Automatic-Reboot-Time "02:00";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::Update-Days
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::Update-Days {"Mon";"Tue";"Wed";"Thu";"Fri";"Sat";"Sun"};   # yamllint disable-line rule:line-length
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::IgnoreAppsRequireRestart
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::IgnoreAppsRequireRestart "true";
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::SyslogEnable
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::SyslogEnable "true";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Unattended-Upgrade::SyslogFacility
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Unattended-Upgrade::SyslogFacility "daemon";
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Dpkg::Options
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Dpkg::Options {
-      check_mode: true
-      register: unattended_upgrades_verify
-      failed_when: unattended_upgrades_verify.changed
-
-    - name: Acquire::http::Dl-Limit
-      ansible.builtin.lineinfile:
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        line: Acquire::http::Dl-Limit "70";
       check_mode: true
       register: unattended_upgrades_verify
       failed_when: unattended_upgrades_verify.changed

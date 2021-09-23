@@ -103,7 +103,7 @@ repos:
       # run molecule tests before commiting to the branch
       - id: molecule
         name: Run molecule with Ubuntu 20.04
-        entry: molecule test --parallel
+        entry: molecule test --parallel --all
         language: python
         files: \.(yaml|yml|j2)$
         exclude: |
