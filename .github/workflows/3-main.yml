@@ -159,7 +159,7 @@ jobs:
           -H "Accept: application/vnd.github.everest-preview+json"
           -H "Content-Type: application/json"
           https://api.github.com/repos/racqspace/playbook-unattended-upgrades/dispatches
-          --data '{"event_type": "New ansible role version: unattended_upgrades"}'
+          --data '{"event_type": "New role version: unattended_upgrades"}'
 
   notify:
     name: Slack Notifications
