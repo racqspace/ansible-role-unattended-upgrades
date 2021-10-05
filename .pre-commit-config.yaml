@@ -96,30 +96,4 @@ repos:
       # potentially be improved. As a community backed project ansible-lint
       # supports only the last two major versions of Ansible.
       - id: ansible-lint
-
-  # keep at bottom as these are slower
-  - repo: local
-    hooks:
-      # run molecule tests before commiting to the branch
-      - id: molecule
-        name: Run molecule with Ubuntu 20.04
-        entry: molecule test --parallel --all
-        language: python
-        files: \.(yaml|yml|j2)$
-        exclude: |
-            (?x)^(
-                .github/workflows/1-develop.yml|
-                .github/workflows/2-pull-request.yml|
-                .github/workflows/3-main.yml|
-                .github/FUNDING.yml|
-                .pre-commit-config.yaml|
-                .pre-commit-hooks.yaml
-            )$
-        pass_filenames: false
-        additional_dependencies:
-          - ansible
-          - ansible-lint
-          - docker
-          - molecule
-          - molecule-docker
 ...
