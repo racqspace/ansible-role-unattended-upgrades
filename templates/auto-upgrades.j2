@@ -1,4 +1,4 @@
-// {{ ansible_managed }}
+{{ ansible_managed | comment('c') }}
 
 // Enable the update/upgrade script (0=disable)
 APT::Periodic::Enable "{{ unattended_upgrades_enabled }}";
