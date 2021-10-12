@@ -93,7 +93,7 @@ jobs:
           python-version: 3.x
 
       - name: Install Molecule Dependencies
-        run: pip3 install -r requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Run Molecule Tests
         run: molecule test --all
