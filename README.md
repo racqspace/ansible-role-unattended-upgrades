@@ -6,9 +6,6 @@
 ![GitHub Release Date](https://img.shields.io/github/release-date/racqspace/ansible-role-unattended-upgrades?style=flat-square)
 ![Maintenance](https://img.shields.io/maintenance/yes/2022?style=flat-square)
 
-![Ansible Role](https://img.shields.io/ansible/role/56296?style=flat-square)
-![Ansible Quality Score](https://img.shields.io/ansible/quality/56296?style=flat-square)
-
 Install and setup [unattended-upgrades](https://launchpad.net/unattended-upgrades) for Ubuntu and Debian (since Wheezy), to periodically install security upgrades.
 
 ## Requirements
