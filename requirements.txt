@@ -4,3 +4,4 @@ docker
 molecule
 molecule-docker
 pre-commit
+yamllint
